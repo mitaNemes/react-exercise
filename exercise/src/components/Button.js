@@ -8,9 +8,13 @@ const styles = {
   }
 };
 export default class Button extends Component {
+  constructor(props) {
+    super(props);
+  }
+  
   render() {
     return (
-      <button style={{...styles.button, ...this.props.style}}>
+      <button onClick={this.props.clickCallback} style={{...styles.button, ...this.props.style}}>
         {this.props.children}
       </button>
     );

@@ -1,9 +1,22 @@
 import React, {Component} from 'react';
+
+import { connect } from 'react-redux';
+import { logIn } from '../redux/actions/loginActions'
 import {Link} from 'react-router-dom';
 import Button from './Button';
 
-export default class TopBar extends Component {
-  state: { loggedIn: false }
+const styles = {
+  logo: {
+    float:  'left',
+    margin: 8
+  }
+};
+
+class TopBar extends Component {
+  logIn() {
+    this.props.userLoggin();
+  };
+
   render() {
     return (
       <header style={{
@@ -27,18 +40,48 @@ export default class TopBar extends Component {
         </div>
         <div style={{float: 'left', color: 'white', flex: 1}} />
         <div style={{float: 'right', paddingRight: 20}}>
-          <Button style={{backgroundColor: 'blue', color: 'white'}}>Login</Button>
-          <Button style={{backgroundColor: 'red', color: 'white'}}>Signup</Button>
+          {this.renderLogInButton()}
+          {this.renderLogOutButton()}
         </div>
       </header>
     );
-  } 
+  }
+  
+  renderLogInButton() { 
+      return ( 
+        <span>
+          { this.props.isUserLogged ? (
+            <Button style={{width: '31px', backgroundColor: 'blue', color: 'white', borderRadius: '50%'}}>MN</Button>
+          ) : (
+            <Button clickCallback={this.logIn.bind(this)} style={{backgroundColor: 'blue', color: 'white'}}>Login</Button>
+          )}
+        </span>
+      )
+  }
+
+  renderLogOutButton() {
+      return ( 
+        <span>
+          { this.props.isUserLogged ? (
+            <Button clickCallback={this.logIn.bind(this)} style={{backgroundColor: 'red', color: 'white'}}>Logout</Button>
+          ) : (
+            <Button style={{backgroundColor: 'red', color: 'white'}}>Signup</Button>
+          )}
+        </span>
+      )
+  }
 }
 
-const styles = {
-  logo: {
-    float:  'left',
-    margin: 8
-  }
+const mapStateToProps = (state) => {
+  return {
+    isUserLogged: state.login.isUserLogged
+  };
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+      userLoggin: () => dispatch(logIn())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TopBar);
