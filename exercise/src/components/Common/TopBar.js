@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
-import { logIn } from '../redux/actions/loginActions'
+
+import { logIn } from '../../redux/actions/loginActions'
 import {Link} from 'react-router-dom';
 import Button from './Button';
 
@@ -83,5 +85,9 @@ const mapDispatchToProps = (dispatch) => {
       userLoggin: () => dispatch(logIn())
   };
 };
+
+TopBar.propTypes = {
+  isUserLogged: PropTypes.bool.isRequired
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopBar);

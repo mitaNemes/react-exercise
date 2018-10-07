@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import {Link} from 'react-router-dom';
 
-import { logIn } from '../redux/actions/loginActions'
-import Button from './Button';
+import { logIn } from '../../redux/actions/loginActions'
+import Button from '../Common/Button';
 
-class HomeContent extends Component {
+class Home extends Component {
   logIn() {
     this.props.userLoggin();
   };
@@ -14,6 +15,7 @@ class HomeContent extends Component {
 
     return (
       <div>
+        <Link to="/user-list">User list</Link>
         <Button clickCallback={this.logIn.bind(this)}>{buttonText}</Button>
       </div>
     );
@@ -32,4 +34,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeContent);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
