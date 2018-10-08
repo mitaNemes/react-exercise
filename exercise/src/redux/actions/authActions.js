@@ -1,5 +1,15 @@
+import authConst from '../constants/authConstants';
+
 export function logIn() {
     return {
-        type: 'USER_LOGGIN'
+        type: authConst.logIn,
+        data: true
+    };
+}
+
+export function logOut() {
+    return {
+        type: authConst.logOut,
+        data: false
     };
 }

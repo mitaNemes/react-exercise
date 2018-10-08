@@ -2,21 +2,18 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 
-import { logIn } from '../../redux/actions/loginActions'
+import { logIn, logOut } from '../../redux/actions/authActions'
 import Button from '../Common/Button';
 
 class Home extends Component {
-  logIn() {
-    this.props.userLoggin();
-  };
-
   render() {
-    let buttonText = !this.props.isUserLogged ? "LogIn" : "LogOut";
-
     return (
       <div>
         <Link to="/user-list">User list</Link>
-        <Button clickCallback={this.logIn.bind(this)}>{buttonText}</Button>
+        { !this.props.isUserLogged
+            ? (<Button clickCallback={this.props.userLoggIn}>LogIn</Button>)
+            : (<Button clickCallback={this.props.userLoggOut}>LogOut</Button>)
+        }
       </div>
     );
   }
@@ -30,7 +27,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      userLoggin: () => dispatch(logIn())
+    userLoggIn: () => dispatch(logIn()),
+    userLoggOut: () => dispatch(logOut())
   };
 };
 

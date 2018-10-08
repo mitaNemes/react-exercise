@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
-import { logIn } from '../../redux/actions/loginActions'
+import { logIn, logOut } from '../../redux/actions/authActions'
 import {Link} from 'react-router-dom';
 import Button from './Button';
 
@@ -15,10 +15,6 @@ const styles = {
 };
 
 class TopBar extends Component {
-  logIn() {
-    this.props.userLoggin();
-  };
-
   render() {
     return (
       <header style={{
@@ -55,7 +51,7 @@ class TopBar extends Component {
           { this.props.isUserLogged ? (
             <Button style={{width: '31px', backgroundColor: 'blue', color: 'white', borderRadius: '50%'}}>MN</Button>
           ) : (
-            <Button clickCallback={this.logIn.bind(this)} style={{backgroundColor: 'blue', color: 'white'}}>Login</Button>
+            <Button clickCallback={this.props.userLoggIn} style={{backgroundColor: 'blue', color: 'white'}}>Login</Button>
           )}
         </span>
       )
@@ -65,7 +61,7 @@ class TopBar extends Component {
       return ( 
         <span>
           { this.props.isUserLogged ? (
-            <Button clickCallback={this.logIn.bind(this)} style={{backgroundColor: 'red', color: 'white'}}>Logout</Button>
+            <Button clickCallback={this.props.userLoggOut} style={{backgroundColor: 'red', color: 'white'}}>Logout</Button>
           ) : (
             <Button style={{backgroundColor: 'red', color: 'white'}}>Signup</Button>
           )}
@@ -82,7 +78,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      userLoggin: () => dispatch(logIn())
+      userLoggIn: () => dispatch(logIn()),
+      userLoggOut: () => dispatch(logOut())
   };
 };
 

@@ -1,19 +1,21 @@
+import authConst from '../constants/authConstants';
+
 let initState = {
     isUserLogged: false
 };
 
-let toggleLogginState = (state) => {
-    let futureState = !state.isUserLogged;
-    return {
-        ...state,
-        isUserLogged: futureState
-    }
-}
-
 export default (state = initState, action) => {
     switch (action.type) {
-        case 'USER_LOGGIN':
-            return toggleLogginState(state);
+        case authConst.logIn:
+            return {
+                ...state,
+                isUserLogged: action.data
+            };
+        case authConst.logOut:
+            return {
+                ...state,
+                isUserLogged: action.data
+            };
         default:
             return state
     }

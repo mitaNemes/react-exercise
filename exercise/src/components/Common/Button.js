@@ -7,11 +7,7 @@ const styles = {
     padding: 8
   }
 };
-export default class Button extends Component {
-  constructor(props) {
-    super(props);
-  }
-  
+export default class Button extends Component {  
   render() {
     return (
       <button onClick={this.props.clickCallback} style={{...styles.button, ...this.props.style}}>
