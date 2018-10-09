@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -8,11 +9,22 @@ class UserDetails extends Component {
     super(props);
 
     this.state = {
-      isUserLogged: false
+      user: {}
     }
+
+    this.getUserByNickname = this.getUserByNickname.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({user: this.getUserByNickname()});
+  }
+
+  getUserByNickname() {
+    this.props.users.filter((user) => user.login.username === decodeURI(this.props.match.params.userId));
   }
 
   render() {
+    console.log(this.state.user);
     return (
       <div>
         <ul>
@@ -22,19 +34,20 @@ class UserDetails extends Component {
           <li>4</li>
           <li>5</li>
         </ul>
+        <Link to="/home">Home</Link>
       </div>
     );
   }
 }
 
+UserDetails.propTypes = {
+  users: PropTypes.array.isRequired
+}
+
 const mapStateToProps = (state) => {
   return {
-    isUserLogged: state.login.isUserLogged
+    users: state.users
   };
 };
-
-UserDetails.propTypes = {
-  isUserLogged: PropTypes.bool.isRequired
-}
 
 export default connect(mapStateToProps)(UserDetails);

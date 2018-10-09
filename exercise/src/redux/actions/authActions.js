@@ -1,15 +1,15 @@
-import authConst from '../constants/authConstants';
+import * as actions from './actionTypes';
 
 export function logIn() {
     return {
-        type: authConst.logIn,
+        type: actions.logIn,
         data: true
     };
 }
 
 export function logOut() {
     return {
-        type: authConst.logOut,
+        type: actions.logOut,
         data: false
     };
 }

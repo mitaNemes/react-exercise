@@ -1,4 +1,4 @@
-import authConst from '../constants/authConstants';
+import * as actions from '../actions/actionTypes';
 
 let initState = {
     isUserLogged: false
@@ -6,12 +6,12 @@ let initState = {
 
 export default (state = initState, action) => {
     switch (action.type) {
-        case authConst.logIn:
+        case actions.logIn:
             return {
                 ...state,
                 isUserLogged: action.data
             };
-        case authConst.logOut:
+        case actions.logOut:
             return {
                 ...state,
                 isUserLogged: action.data

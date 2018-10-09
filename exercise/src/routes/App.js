@@ -8,11 +8,9 @@ import PrivateRoute from './PrivateRoute';
 
 import TopBar from '../components/Common/TopBar';
 import Home from '../components/Home/Home';
-import UserList from '../components/User/UserList';
+import UserPage from '../components/User/UserPage';
 import UserDetails from '../components/User/UserDetails';
   
-
-
 class App extends Component {
     render() {
         return (
@@ -21,8 +19,8 @@ class App extends Component {
                     <TopBar />
                     <Route exact path="/" component={Landing}/>
                     <Route path="/home" component={Home}/>
-                    <PrivateRoute path="/user-list" redirectPath="/home" isAuthenticated={this.props.isUserLogged} component={UserList} />
-                    <PrivateRoute path="/user-list/:userId" redirectPath="/home" isAuthenticated={this.props.isUserLogged} component={UserDetails} />
+                    <PrivateRoute path="/user-list" redirectPath="/home" isAuthenticated={this.props.isUserLogged} component={UserPage} />
+                    <PrivateRoute path="/user-details/:userId" redirectPath="/home" isAuthenticated={this.props.isUserLogged} component={UserDetails} />
                 </div>
             </Router>
         )

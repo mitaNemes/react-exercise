@@ -9,6 +9,7 @@ import {Store} from './redux/store';
 import App from './routes/App';
 
 import './index.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 
 import registerServiceWorker from './registerServiceWorker';
