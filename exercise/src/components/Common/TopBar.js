@@ -19,10 +19,26 @@ class TopBar extends Component {
     super(props);
 
     this.getUserInitials = this.getUserInitials.bind(this);
+    this.renderButtonBar = this.renderButtonBar.bind(this);
   }
 
   getUserInitials() {
     return `${this.props.userData.firstName.charAt(0)}${this.props.userData.lastName.charAt(0)}`;
+  }
+
+  renderButtonBar() {
+    return this.props.isUserLogged 
+        ? (
+          <div style={{float: 'right', paddingRight: 20}}>
+            <span className="round-button margin-right-5">{this.getUserInitials()}</span>
+            <Button clickCallback={this.props.userLoggOut} propClass='btn btn-primary'>LogOut</Button>
+          </div>
+        ) : (
+          <div style={{float: 'right', paddingRight: 20}}>
+            <Button clickCallback={this.props.userLoggIn} propClass='btn btn-primary margin-right-5'>LogIn</Button>
+            <Link to="/sign-up" className='btn btn-danger'>SignUp</Link>
+          </div>
+        );
   }
 
   render() {
@@ -43,23 +59,9 @@ class TopBar extends Component {
             <img alt={'logo'} style={{ maxHeight: 40, flex: 1}} src="favicon-196x196.png"/>
           </Link>
         </div>
-        <div>
-          {'Modus Create'}
-        </div>
+        <div>{'Modus Create'}</div>
         <div style={{float: 'left', color: 'white', flex: 1}} />
-        { this.props.isUserLogged 
-          ? (
-            <div style={{float: 'right', paddingRight: 20}}>
-              <span className="round-button margin-right-5">{this.getUserInitials()}</span>
-              <Button clickCallback={this.props.userLoggOut} propClass='btn btn-primary'>LogOut</Button>
-            </div>
-          ) : (
-            <div style={{float: 'right', paddingRight: 20}}>
-              <Button clickCallback={this.props.userLoggIn} propClass='btn btn-primary margin-right-5'>LogIn</Button>
-              <Link to="/sign-up" className='btn btn-danger'>SignUp</Link>
-            </div>
-          )
-        }
+        {this.renderButtonBar()}
       </header>
     );
   }

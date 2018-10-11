@@ -1,4 +1,4 @@
-const delay = 2000;
+const delay = 1000;
 
 let user = {
     firstName: '',
@@ -19,10 +19,13 @@ export default class AuthApi {
     }
 
     static setUserData(userData) {
-        user = Object.assign({}, user, userData);
-
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
           setTimeout(() => {
+            if (userData.firstName === '' || userData.lastName === '') {
+                return reject('All fields are required...');
+            }
+
+            user = Object.assign({}, user, userData);
             resolve("succes");
           }, delay);
         });

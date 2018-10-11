@@ -22,11 +22,11 @@ class UserDetails extends Component {
       <div className="container-fluid">
         <div className="col-xs-12 col-lg-12" >
           <Breadcrumb pages={pages}/>
-          <div className="grey-panel">  
-            <div className="col-md-3 col-lg-3">
+          <div className="grey-panel flex-row">  
+            <div className="col-md-2 col-lg-2 col-sm-4">
               <img alt="User Pic" src={user.picture.large} className="img-circle img-responsive"/> 
             </div>
-            <div  className=" col-md-9 col-lg-9 ">
+            <div  className=" col-md-10 col-lg-10 col-sm-5">
               <table className="table table-user-information">
                 <tbody>
                   <tr>

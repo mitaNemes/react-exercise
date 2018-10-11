@@ -33,7 +33,7 @@ const setErrMsg = (payload) => {
     }
 } 
 
-const clearErrMsg = () => {
+export const clearErrMsg = () => {
     return { type: actions.clearErrMsg};
 }
 
@@ -61,9 +61,9 @@ export const logOutUser = () => {
 export const signUpUser = (userData) => {
     return dispatch => {
         return AuthService.setUserData(userData)
-            .then((response) => dispatch(logInUser()))
+            .then(() => dispatch(logInUser()))
             .catch((error) => {
-                throw(error);
-            })
+                dispatch(setErrMsg(error));
+            });
     }
 }
