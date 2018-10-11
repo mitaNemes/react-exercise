@@ -27,7 +27,7 @@ class SignUp extends React.Component {
                 lastName: this.state.lastName,
             }).then(() => {
                 this.handleCommunicationState(false);
-                this.props.history.push('/user-list');
+                this.props.history.push('/home');
             })
         }
     }

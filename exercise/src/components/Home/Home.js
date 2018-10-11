@@ -17,12 +17,12 @@ class Home extends Component {
                 {this.props.error && (
                   <p className="error">{this.props.error}</p>
                 )}
-                <Button clickCallback={this.props.userLoggIn}>LogIn</Button>
+                <Button clickCallback={this.props.userLoggIn} propClass='btn btn-primary'>LogIn</Button>
               </div>
             ) : (
               <div>
                 <WelcomeScreen />
-                <Button clickCallback={this.props.userLoggOut}>LogOut</Button>
+                <Button clickCallback={this.props.userLoggOut} propClass='btn btn-primary'>LogOut</Button>
               </div>
             )}
           </div>

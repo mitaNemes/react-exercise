@@ -55,7 +55,7 @@ class TopBar extends Component {
             </div>
           ) : (
             <div style={{float: 'right', paddingRight: 20}}>
-              <Button clickCallback={this.props.userLoggIn} propClass='btn btn-primary margin-right-5'>Login</Button>
+              <Button clickCallback={this.props.userLoggIn} propClass='btn btn-primary margin-right-5'>LogIn</Button>
               <Link to="/sign-up" className='btn btn-danger'>SignUp</Link>
             </div>
           )
