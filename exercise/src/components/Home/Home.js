@@ -1,45 +1,57 @@
-import React, {Component} from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-import { logIn, logOut } from '../../redux/actions/authActions'
-import Button from '../Common/Button';
-import WelcomeScreen from './Welcome'
+import { logInUser, logOutUser } from "../../redux/actions/authActions";
+import Button from "../Common/Button";
+import WelcomeScreen from "./Welcome";
 
 class Home extends Component {
   render() {
     return (
-      <div>
-        <div className="container-fluid"></div>
-          <div className="col-xs-12 col-lg-12" >
-            <div className="grey-panel">
-              
-              { !this.props.isUserLogged
-                  ? (<Button clickCallback={this.props.userLoggIn}>LogIn</Button>)
-                  : (
-                    <div>
-                      <WelcomeScreen/>
-                      <Button clickCallback={this.props.userLoggOut}>LogOut</Button>
-                    </div>
-                  )
-              }
-            </div>
+      <div className="container-fluid">
+        <div className="col-xs-12 col-lg-12">
+          <div className="grey-panel">
+            {!this.props.isUserLogged ? (
+              <div>
+                {this.props.error && (
+                  <p className="error">{this.props.error}</p>
+                )}
+                <Button clickCallback={this.props.userLoggIn}>LogIn</Button>
+              </div>
+            ) : (
+              <div>
+                <WelcomeScreen />
+                <Button clickCallback={this.props.userLoggOut}>LogOut</Button>
+              </div>
+            )}
           </div>
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
+Home.propTypes = {
+  isUserLogged: PropTypes.bool.isRequired,
+  error: PropTypes.string
+};
+
+const mapStateToProps = state => {
   return {
-    isUserLogged: state.login.isUserLogged
+    isUserLogged: state.login.isUserLogged,
+    error: state.login.authError
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    userLoggIn: () => dispatch(logIn()),
-    userLoggOut: () => dispatch(logOut())
+    userLoggIn: () => dispatch(logInUser()),
+    userLoggOut: () => dispatch(logOutUser())
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);

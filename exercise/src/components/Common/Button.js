@@ -1,19 +1,18 @@
-import React, {Component} from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
-const styles = {
-  button: {
-    width:   100,
-    margin:  8,
-    padding: 8
-  }
+const Button = props => {
+  return (
+    <button onClick={props.clickCallback} className={props.propClass}>
+      {props.children}
+    </button>
+  );
 };
-export default class Button extends Component {  
-  render() {
-    return (
-      <button onClick={this.props.clickCallback} style={{...styles.button, ...this.props.style}}>
-        {this.props.children}
-      </button>
-    );
-  }
-}
 
+Button.propTypes = {
+  clickCallback: PropTypes.func.isRequired,
+  children: PropTypes.any.isRequired,
+  propClass: PropTypes.string
+};
+
+export default Button;

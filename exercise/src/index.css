@@ -12,7 +12,7 @@ body {
   margin: 0 auto;
 }
 
-.capitalizeName {
+.capitalize {
   text-transform: capitalize; 
 }
 
@@ -20,7 +20,25 @@ body {
   background: #f0f0f0;
   display: flex;
   padding: 10px;
-  flex-direction: row;
+}
+
+.error {
+  color: red;
+  padding-left: 10px; 
+}
+
+.round-button {
+  background: #dc3545;
+  border-radius: 50%;
+  padding: 10px 7px;
+  font-size: 1rem;
+  line-height: 1.5;
+  vertical-align: middle;
+  top: 8px;
+}
+
+.margin-right-5 {
+  margin-right: 5px;
 }
 
 .table-user-information > tbody > tr {
@@ -34,6 +52,11 @@ body {
 
 .table-user-information > tbody > tr > td {
   border-top: 0;
+}
+
+.table-user-information > tbody > tr:hover {
+  background: #f0f0f0;
+  cursor: pointer;
 }
 
 .toppad {

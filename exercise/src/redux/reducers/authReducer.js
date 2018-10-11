@@ -1,7 +1,12 @@
 import * as actions from '../actions/actionTypes';
 
 let initState = {
-    isUserLogged: false
+    authError: null,
+    isUserLogged: false,
+    userData: {
+        firstName: '',
+        lastName: ''
+    }
 };
 
 export default (state = initState, action) => {
@@ -15,6 +20,26 @@ export default (state = initState, action) => {
             return {
                 ...state,
                 isUserLogged: action.data
+            };
+        case actions.setUser:
+            return {
+                ...state,
+                userData: action.data
+            };
+        case actions.clearUser:
+            return {
+                ...state,
+                userData: initState.userData
+            };
+        case actions.setErrMsg:
+            return {
+                ...state,
+                authError: action.data
+            };
+        case actions.clearErrMsg:
+            return {
+                ...state,
+                authError: initState.authError
             };
         default:
             return state

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import Breadcrumb from '../Common/Breadcrumb';
 
 import {loadUserList} from  '../../redux/actions/usersActions';
 
@@ -25,9 +25,18 @@ class UserPage extends Component {
   }
 
   render() {
+    let pages = [{
+      path: "/home",
+      label: "Home"
+    },{
+      path: "/user-list",
+      label: "User List"
+    }];
+
     return (
       <div className="container-fluid">
-        <table className="table">
+        <Breadcrumb pages={pages}/>
+        <table className="table table-user-information">
           <thead>
             <tr>
               <th scope="col">&nbsp;</th>
@@ -43,7 +52,6 @@ class UserPage extends Component {
           )}
           </tbody>
         </table>
-        <Link to="/home">Home</Link>
       </div>
     );
   }

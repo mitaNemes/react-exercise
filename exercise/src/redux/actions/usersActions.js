@@ -2,7 +2,6 @@ import * as types from './actionTypes';
 import usersService from '../../services/userService';
 
 export const loadUserListSuccess = (users) => {
-    console.log(users);
     return { type: types.loadUsersSuccess, users};
 }
 
