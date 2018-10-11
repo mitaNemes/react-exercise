@@ -10,7 +10,7 @@ export default class AuthApi {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 if (user.firstName === '' || user.lastName === '') {
-                    return reject('Pleas signUp first.... (Click \'singUp\' button)');
+                    return reject('Please sign-up first.... (Click \'singUp\' button)');
                 }
 
                 return resolve(Object.assign({}, user));
