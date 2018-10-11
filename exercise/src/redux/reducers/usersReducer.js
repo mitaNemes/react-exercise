@@ -13,3 +13,5 @@ export default (state = initState, action) => {
             return state
     }
 }
+
+export const getUserByNickName = (users, nickName) => users.find((user) => user.login.username === nickName);

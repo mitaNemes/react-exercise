@@ -3,50 +3,59 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
+import { getUserByNickName } from '../../redux/reducers/rootReducer';
 
 class UserDetails extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      user: {}
-    }
-
-    this.getUserByNickname = this.getUserByNickname.bind(this);
-  }
-
-  componentDidMount() {
-    this.setState({user: this.getUserByNickname()});
-  }
-
-  getUserByNickname() {
-    this.props.users.filter((user) => user.login.username === decodeURI(this.props.match.params.userId));
-  }
-
   render() {
-    console.log(this.state.user);
+    let user = this.props.user;
     return (
-      <div>
-        <ul>
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
-          <li>4</li>
-          <li>5</li>
-        </ul>
-        <Link to="/home">Home</Link>
+      <div className="container-fluid">
+        <div className="col-xs-12 col-lg-12" >
+          <div className="grey-panel">
+            <div className="col-md-3 col-lg-3">
+              <img alt="User Pic" src={user.picture.large} className="img-circle img-responsive"/> 
+            </div>
+            <div  className=" col-md-9 col-lg-9 ">
+              <table className="table table-user-information">
+                <tbody>
+                  <tr>
+                    <td>First Name</td>
+                    <td className="capitalizeName">{user.name.first}</td>
+                  </tr>
+                  <tr>
+                    <td>Last Name</td>
+                    <td className="capitalizeName">{user.name.last}</td>
+                  </tr>
+                  <tr>
+                    <td>Email</td>
+                    <td>{user.email}</td>
+                  </tr>
+                  <tr>
+                    <td>Phone</td>
+                    <td>{user.phone}</td>
+                  </tr>
+                  <tr>
+                    <td>Cell</td>
+                    <td>{user.cell}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <Link to="/user-list">User List</Link>
       </div>
     );
   }
 }
 
 UserDetails.propTypes = {
-  users: PropTypes.array.isRequired
+  user: PropTypes.object.isRequired
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    users: state.users
+    user: getUserByNickName(state.users, ownProps.match.params.userId)
   };
 };
 

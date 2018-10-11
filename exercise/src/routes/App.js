@@ -17,10 +17,12 @@ class App extends Component {
             <Router history={history}>
                 <div className="App">
                     <TopBar />
-                    <Route exact path="/" component={Landing}/>
-                    <Route path="/home" component={Home}/>
-                    <PrivateRoute path="/user-list" redirectPath="/home" isAuthenticated={this.props.isUserLogged} component={UserPage} />
-                    <PrivateRoute path="/user-details/:userId" redirectPath="/home" isAuthenticated={this.props.isUserLogged} component={UserDetails} />
+                    <div className="main center toppad">
+                        <Route exact path="/" component={Landing}/>
+                        <Route path="/home" component={Home}/>
+                        <PrivateRoute path="/user-list" redirectPath="/home" isAuthenticated={this.props.isUserLogged} component={UserPage} />
+                        <PrivateRoute path="/user-details/:userId" redirectPath="/home" isAuthenticated={this.props.isUserLogged} component={UserDetails} />
+                    </div>
                 </div>
             </Router>
         )

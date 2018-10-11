@@ -3,3 +3,39 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.main {
+  max-width: 1200px;
+}
+
+.center {
+  margin: 0 auto;
+}
+
+.capitalizeName {
+  text-transform: capitalize; 
+}
+
+.grey-panel {
+  background: #f0f0f0;
+  display: flex;
+  padding: 10px;
+  flex-direction: row;
+}
+
+.table-user-information > tbody > tr {
+  border-top: 1px solid rgb(221, 221, 221);
+}
+
+.table-user-information > tbody > tr:first-child {
+  border-top: 0;
+}
+
+
+.table-user-information > tbody > tr > td {
+  border-top: 0;
+}
+
+.toppad {
+  margin-top:20px;
+}
